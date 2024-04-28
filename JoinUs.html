@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="Fstyle.css">
+    <!-- Iconscout CSS -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Join Us</title> 
+</head>
+<body>
+    <div class="container">
+        <header>Join us</header>
+
+        <form id="joinForm" onsubmit="return validateForm()">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" id="fullName" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Date of Birth</label>
+                            <input type="date" id="dob" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Mobile Number</label>
+                            <input type="tel" id="mobile" placeholder="Enter mobile number" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Gender</label>
+                            <select id="gender" required>
+                                <option disabled selected>Select gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Study level</label>
+                            <select id="studyLevel" required>
+                                <option disabled selected>Select Level</option>
+                                <option>Secondary Education</option>
+                                <option>Post-Secondary</option>
+                                <option>Undergraduate Education</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <span class="title">Identity Details</span>
+
+                    <div class="input-field">
+                        <label>Choose a Category:</label>
+                        <select id="categorySelect" onchange="populateCourses()">
+                            <option value="">Select Category</option>
+                            <option value="Mobile App Development">Mobile App Development</option>
+                            <option value="Software Engineering">Software Engineering</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Game Development">Game Development</option>
+                            <option value="Data Science">Data Science</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Choose a Course:</label>
+                        <select id="courseSelect" class="input-field" disabled required>
+                            <option value="">Select Category First</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit">
+                        <span class="btnText">Submit</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                </div> 
+            </div>
+        </form>
+    </div>
+
+    <script>
+    function populateCourses() {
+        var categorySelect = document.getElementById("categorySelect");
+        var courseSelect = document.getElementById("courseSelect");
+        var selectedCategory = categorySelect.value;
+
+        // Clear previous options
+        courseSelect.innerHTML = "";
+
+        if (selectedCategory === "") {
+            // Disable course select if no category is selected
+            courseSelect.disabled = true;
+            // Add default option
+            var defaultOption = document.createElement("option");
+            defaultOption.text = "Select Category First";
+            courseSelect.add(defaultOption);
+        } else {
+            // Enable course select
+            courseSelect.disabled = false;
+            // Populate course options based on selected category
+            var courses = getCourses(selectedCategory);
+            for (var i = 0; i < courses.length; i++) {
+                var option = document.createElement("option");
+                option.text = courses[i];
+                courseSelect.add(option);
+            }
+        }
+    }
+
+    // Function to return courses based on selected category
+    function getCourses(category) {
+        // Define courses for each category
+        var courses = {
+            "Mobile App Development": ["iOS Development", "Android Development", "Cross-Platform Development"],
+            "Software Engineering": ["Software Design", "Algorithm Analysis", "Software Testing"],
+            "Cybersecurity": ["Network Security", "Ethical Hacking", "Cryptology"],
+            "Web Development": ["HTML/CSS", "JavaScript", "Backend Development"],
+            "Game Development": ["Unity Development", "Game Design Principles", "3D Modeling"],
+            "Data Science": ["Machine Learning", "Data Analysis", "Big Data Technologies"]
+        };
+
+        // Return courses for the selected category
+        return courses[category] || [];
+    }
+
+    function validateForm() {
+        var fullName = document.getElementById("fullName").value;
+        var dob = document.getElementById("dob").value;
+        var email = document.getElementById("email").value;
+        var mobile = document.getElementById("mobile").value;
+        var gender = document.getElementById("gender").value;
+        var studyLevel = document.getElementById("studyLevel").value;
+        var courseSelect = document.getElementById("courseSelect").value;
+
+        if (!fullName || !dob || !email || !mobile || gender === "Select gender" || studyLevel === "Select Level" || !courseSelect) {
+            alert("Please fill in all the fields before submitting.");
+            return false;
+        }
+        window.location.href = "index.html";
+        alert("Your request has been submitted. We will contact you via WhatsApp, email, or via phone call to complete the remaining steps.");
+        return true;
+    }
+    </script>
+</body>
+</html>
