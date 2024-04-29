@@ -22,7 +22,7 @@ image.onload = function () {
 
 function drawImage() {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-    ctx.font = '75px monotype corsiva';
+    ctx.font = '65px monotype corsiva';
     ctx.fillStyle = '#152B6B';
 	ctx.fillText(name, 150, 350); // Corrected this line
     ctx.font = '15px verdana';
