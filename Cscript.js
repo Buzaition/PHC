@@ -24,7 +24,7 @@ function drawImage() {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     ctx.font = '65px monotype corsiva';
     ctx.fillStyle = '#152B6B';
-	ctx.fillText(name, 150, 350); // Corrected this line
+	ctx.fillText(name, 185, 350); // Corrected this line
     ctx.font = '15px verdana';
     ctx.fillStyle = '#152B6B';
 	ctx.fillText(code, 370, 680); // Corrected this line
