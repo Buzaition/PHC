@@ -1,6 +1,6 @@
 function extractEveryThirdLetter(inputString) {
     var result = '';
-    for (var i = 0; i < inputString.length; i += 3) {
+    for (var i = 0; i < inputString.length; i += 2) {
         result += inputString[i];
     }
     return result;
@@ -9,8 +9,8 @@ function extractEveryThirdLetter(inputString) {
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 const urlParams = new URLSearchParams(window.location.search);
-const name = extractEveryThirdLetter(urlParams.get('n1saemfemg'));
-var code=urlParams.get('c2eo98ddfeg')
+const name = extractEveryThirdLetter(urlParams.get('n1'));
+var code=urlParams.get('c0')
 var downloadBtn = document.getElementById('download-btn');
 
 var image = new Image();
